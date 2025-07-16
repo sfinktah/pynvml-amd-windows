@@ -1,0 +1,31 @@
+[build-system]
+requires = ["setuptools>=45", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pynvml-amd-windows"
+version = "1.0.0"
+description = "pynvml-compatible library for AMD GPUs on Windows"
+authors = [
+    {name = "Your Name", email = "your.email@example.com"},
+]
+license = {text = "MIT"}
+readme = "README.md"
+requires-python = ">=3.7"
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: Microsoft :: Windows",
+    "Programming Language :: Python :: 3",
+    "Topic :: System :: Hardware",
+    "Topic :: System :: Monitoring",
+]
+dependencies = [
+    "ADLXPybind>=1.0.0",
+]
+keywords = ["amd", "gpu", "nvidia", "pynvml", "adlx", "monitoring", "hardware"]
+
+[project.urls]
+Homepage = "https://github.com/yourusername/pynvml-amd-windows"
+"Bug Tracker" = "https://github.com/yourusername/pynvml-amd-windows/issues"

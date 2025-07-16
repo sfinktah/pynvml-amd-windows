@@ -1,0 +1,1 @@
+import sys; import pynvml_amd_windows as _pynvml; sys.modules['pynvml'] = _pynvml

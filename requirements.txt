@@ -1,0 +1,1 @@
+# C:/Users/sfink/PycharmProjects/AmdAdxlLogger/ADLX/ADLXPybind/dist/adlxpybind-1.0.1-cp311-cp311-win_amd64.whl
