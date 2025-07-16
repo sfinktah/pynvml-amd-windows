@@ -33,4 +33,5 @@ git add -u
 git commit -m "$version"
 git push
 sleep 15
+echo python -m pip install --force-reinstall "$name==$version"
 python -m pip install --force-reinstall "$name==$version"
