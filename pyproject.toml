@@ -1,31 +1,26 @@
 [build-system]
-requires = ["setuptools>=45", "wheel"]
+requires = ["setuptools>=61.0"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "pynvml-amd-windows"
+name = "pynvml_amd_windows"
 version = "1.0.0"
 description = "pynvml-compatible library for AMD GPUs on Windows"
 authors = [
-    {name = "Your Name", email = "your.email@example.com"},
+    {name = "sfinktah", email = "sfinktah@github.spamtrak.org"},
 ]
-license = {text = "MIT"}
+license = {file = "LICENSE"}
 readme = "README.md"
 requires-python = ">=3.7"
-classifiers = [
-    "Development Status :: 4 - Beta",
-    "Intended Audience :: Developers",
-    "License :: OSI Approved :: MIT License",
-    "Operating System :: Microsoft :: Windows",
-    "Programming Language :: Python :: 3",
-    "Topic :: System :: Hardware",
-    "Topic :: System :: Monitoring",
-]
-dependencies = [
-    "ADLXPybind>=1.0.0",
-]
-keywords = ["amd", "gpu", "nvidia", "pynvml", "adlx", "monitoring", "hardware"]
+dependencies = []
 
-[project.urls]
-Homepage = "https://github.com/yourusername/pynvml-amd-windows"
-"Bug Tracker" = "https://github.com/yourusername/pynvml-amd-windows/issues"
+[tool.setuptools]
+packages = ["pynvml_amd_windows"]
+
+[tool.setuptools.package-data]
+# Include the .pth file in the wheel and sdist
+# The key "" means "for the root", so the .pth lands in site-packages
+"" = ["pynvml_amd_windows.pth"]
+
+[tool.setuptools.exclude-package-data]
+# Nothing to exclude by default

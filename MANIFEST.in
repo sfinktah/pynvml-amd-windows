@@ -1,6 +1,1 @@
-include README.md
-include LICENSE
-include requirements.txt
-include setup.cfg
-include pyproject.toml
-recursive-include pynvml_amd_windows *.py
+   include pynvml_amd_windows.pth

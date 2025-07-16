@@ -1,85 +1,58 @@
 # pynvml-amd-windows
 
-A pynvml-compatible library for AMD GPUs on Windows using ADLX (AMD Device Library eXtra).
+## Purpose
 
-## Overview
+**pynvml-amd-windows** is a drop-in replacement for NVIDIA's `pynvml` Python library, designed to allow existing pynvml-based applications to monitor and manage AMD GPUs on Windows systems. It provides a compatible API that redirects NVML calls to the AMD ADLX backend, enabling tools that were written for NVIDIA GPUs to work seamlessly with AMD hardware.
 
-This library provides a drop-in replacement for pynvml when working with AMD GPUs on Windows. It uses the ADLX library to provide the same interface as pynvml, allowing existing applications to work with AMD hardware without modification.
+It was written for the specific purpose of enabling [Crystools](https://github.com/crystian/ComfyUI-Crystools) GPU performance monitoring for AMD platforms under Windows.
+
+This package is especially useful if you have tools or scripts that expect `pynvml` to be present, and you want them to function without modification on systems with supported AMD GPUs.
+
+## Features
+
+- Implements the `pynvml` interface using AMD's ADLX library for Windows.
+- Compatible with most scripts and programs expecting `import pynvml`.
+- No need to modify existing code: the package transparently handles imports using a `.pth` file.
 
 ## Installation
 
-```bash
+### Using pip
+```
 pip install pynvml-amd-windows
 ```
 
-## Requirements
+### From source
 
-- Windows operating system
-- AMD GPU with ADLX support
-- Python 3.7+
-- ADLXPybind package
+Clone or download this repository, then run:
+```
+pip install .
+```
+from within the project directory.
 
 ## Usage
 
-Simply replace your pynvml import with this library:
+After installation, any Python program that imports `pynvml` (or uses a package depending on it) will transparently use the AMD implementation on Windows—no code changes required.
 
-```python
-# Instead of: import pynvml
-import pynvml_amd_windows as pynvml
-
-# Initialize
-pynvml.nvmlInit()
-
-# Get device count
-device_count = pynvml.nvmlDeviceGetCount()
-print(f"Number of GPUs: {device_count}")
-
-# Get device handle
-handle = pynvml.nvmlDeviceGetHandleByIndex(0)
-
-# Get device name
-name = pynvml.nvmlDeviceGetName(handle)
-print(f"GPU Name: {name}")
-
-# Get temperature
-temp = pynvml.nvmlDeviceGetTemperature(handle, pynvml.NVML_TEMPERATURE_GPU)
-print(f"Temperature: {temp}°C")
-
-# Get utilization
-util = pynvml.nvmlDeviceGetUtilizationRates(handle)
-print(f"GPU Utilization: {util.gpu}%")
-
-# Get memory info
-mem = pynvml.nvmlDeviceGetMemoryInfo(handle)
-print(f"Memory: {mem.used}/{mem.total} bytes")
-
-# Shutdown
-pynvml.nvmlShutdown()
+Example:
 ```
+python
+import pynvml
 
-## Supported Functions
-
-- `nvmlInit()` - Initialize ADLX library
-- `nvmlDeviceGetCount()` - Get number of GPU devices
-- `nvmlDeviceGetHandleByIndex(index)` - Get device handle by index
-- `nvmlDeviceGetName(handle)` - Get device name
-- `nvmlSystemGetDriverVersion()` - Get driver version
-- `nvmlDeviceGetUtilizationRates(handle)` - Get GPU utilization
-- `nvmlDeviceGetMemoryInfo(handle)` - Get memory information
-- `nvmlDeviceGetTemperature(handle, sensor)` - Get temperature
-- `nvmlShutdown()` - Shutdown library
-
+pynvml.nvmlInit()
+count = pynvml.nvmlDeviceGetCount()
+print("Number of AMD GPUs detected:", count)
+```
 ## Limitations
 
-- Windows only
-- AMD GPUs only
-- Some pynvml functions may not be available
-- Memory utilization in `nvmlDeviceGetUtilizationRates()` always returns 0
+- Only supports AMD GPUs on Windows using the ADLX backend.
+- Some advanced `pynvml` features may not be supported or may have slightly different behavior due to backend differences.
 
 ## License
 
-MIT License
+This project is distributed under the MIT License.
 
-## Contributing
+## Authors
 
-Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
+- Christopher Anderson (<sfinktah@github.spamtrak.org>)
+```
+
