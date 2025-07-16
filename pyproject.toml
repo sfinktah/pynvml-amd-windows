@@ -13,14 +13,3 @@ license = {file = "LICENSE"}
 readme = "README.md"
 requires-python = ">=3.7"
 dependencies = []
-
-[tool.setuptools]
-packages = ["pynvml_amd_windows"]
-
-[tool.setuptools.package-data]
-# Include the .pth file in the wheel and sdist
-# The key "" means "for the root", so the .pth lands in site-packages
-"" = ["pynvml_amd_windows.pth"]
-
-[tool.setuptools.exclude-package-data]
-# Nothing to exclude by default

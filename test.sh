@@ -10,7 +10,7 @@ test -d .venv && {
     . .venv/*/activate
 }
 python -m pip install build
-py -m build --sdist
+python -m build --sdist
 # python setup.py sdist
 files=$( ls dist/*.tar.gz | sort -V )
 lastfile=$( last $files )

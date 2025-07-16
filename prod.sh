@@ -4,10 +4,11 @@ function last {
     last_item=${array[$last_index]}
     echo "$last_item"
 }
-test -f .venv && {
+test -d .venv && {
+    echo "attempting to load venv"
     . .venv/*/activate
 }
-pip install build
+python -m pip install build
 python -m build --sdist
 files=$( ls dist/*.tar.gz | sort -V )
 lastfile=$( last $files )
