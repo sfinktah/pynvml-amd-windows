@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "pynvml_amd_windows"
-version = "1.0.2"
+version = "1.0.3"
 description = "pynvml-compatible library for AMD GPUs on Windows"
 authors = [
     {name = "sfinktah", email = "sfinktah@github.spamtrak.org"},
@@ -12,7 +12,9 @@ authors = [
 readme = "README.md"
 license = "MIT"  # SPDX-style, replaces the deprecated table syntax
 requires-python = ">=3.7"
-dependencies = []
+dependencies = [
+    "adlxpybind >=1.4.2"
+]
 keywords = ["amd", "gpu", "nvidia", "pynvml", "adlx", "crystools", "comfyui", "windows"]
 classifiers = [
     "Development Status :: 4 - Beta",
