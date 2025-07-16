@@ -29,8 +29,8 @@ bump_minor_version() {
     fi
 
     # Increment minor version
-    local new_path$((patch + 1))
-    local new_version="$major.$new_minor.$patch"
+    local new_patch=$((patch + 1))
+    local new_version="$major.$minor.$new_patch"
 
     echo "New version: $new_version" >&2
 
