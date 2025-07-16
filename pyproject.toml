@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "pynvml_amd_windows"
-version = "1.0.5"
+version = "1.0.6"
 description = "pynvml-compatible library for AMD GPUs on Windows"
 authors = [
     {name = "sfinktah", email = "sfinktah@github.spamtrak.org"},

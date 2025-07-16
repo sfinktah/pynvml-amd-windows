@@ -101,7 +101,7 @@ class ADLXToPynvml:
                 except:
                     pass
 
-            print(f"DEBUG: Caching VRAM ranges for {gpu_count} GPUs")
+            # print(f"DEBUG: Caching VRAM ranges for {gpu_count} GPUs")
 
             for i in range(gpu_count):
                 try:
@@ -112,24 +112,24 @@ class ADLXToPynvml:
                             try:
                                 _, max_vram_mb = support.GetGPUVRAMRange()
                                 self._gpu_vram_ranges[i] = max_vram_mb
-                                print(f"DEBUG: Cached VRAM range for GPU {i}: {max_vram_mb} MB")
+                                # print(f"DEBUG: Cached VRAM range for GPU {i}: {max_vram_mb} MB")
                             except Exception as e:
-                                print(f"DEBUG: Failed to get VRAM range for GPU {i}: {e}")
+                                # print(f"DEBUG: Failed to get VRAM range for GPU {i}: {e}")
                                 self._gpu_vram_ranges[i] = 0
 
                             if hasattr(support, 'Release'):
                                 support.Release()
                             del support
                         else:
-                            print(f"DEBUG: Failed to get metrics support for GPU {i}")
+                            # print(f"DEBUG: Failed to get metrics support for GPU {i}")
                             self._gpu_vram_ranges[i] = 0
 
                         del gpu
                     else:
-                        print(f"DEBUG: Failed to get GPU object for index {i}")
+                        # print(f"DEBUG: Failed to get GPU object for index {i}")
                         self._gpu_vram_ranges[i] = 0
                 except Exception as e:
-                    print(f"DEBUG: Exception caching VRAM range for GPU {i}: {e}")
+                    # print(f"DEBUG: Exception caching VRAM range for GPU {i}: {e}")
                     self._gpu_vram_ranges[i] = 0
 
             # Mark cache as populated
@@ -314,16 +314,13 @@ class ADLXToPynvml:
                             used_vram_mb = metrics.GPUVRAM()  # VRAM usage in MB
                             max_vram_mb = self._gpu_vram_ranges.get(device_handle.index, 0)
                         
-                            print(f"DEBUG: GPU {device_handle.index} - Used VRAM: {used_vram_mb} MB, Max VRAM: {max_vram_mb} MB")
-                        
                             if max_vram_mb > 0:
                                 memory_utilization = (used_vram_mb / max_vram_mb) * 100.0
-                                print(f"DEBUG: Calculated memory utilization: {memory_utilization}%")
                             else:
                                 print("DEBUG: Max VRAM is 0, cannot calculate memory utilization")
                             
                         except Exception as e:
-                            print(f"DEBUG: Exception calculating memory utilization: {e}")
+                            # print(f"DEBUG: Exception calculating memory utilization: {e}")
                             pass  # If VRAM calculation fails, keep memory_utilization as 0
                     
                         # Clean up metrics
